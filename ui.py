@@ -1,5 +1,5 @@
 """functions in this file handles 
-    communication between the program and the user"""
+    communication between the application and the user"""
 
 
 def message(msg):
