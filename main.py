@@ -4,7 +4,6 @@ import api_controller
 import db
 
 
-
 def main():
     while True:
         try:
