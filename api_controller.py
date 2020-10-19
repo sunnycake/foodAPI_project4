@@ -1,17 +1,19 @@
 from api import flickr, edamam, spoonacular
-import random 
+import random
 
 
-def get_food_info(search_food, search_drink):
-    
-    what_to_search_for_image = random.choice([search_food, search_drink])
-    image = flickr.get_image(what_to_search_for_image)
+def getDrinkImage(drinkName):
+    img = flickr.getImage(drinkName)
+    # error handler
+    try:
+        filename = f'{drinkName}.jpeg'
 
+        with open(filename, 'wb') as f:
+            for chunk in img.iter_content():
+                f.write(chunk)
 
-    drink = edamam.get_drink(search_drink)
-    recipe = spoonacular.get_recipe(search_food)
-
-    return image, drink, recipe
-
-
-
+    except:
+        print("error")
+    return filename
+result = getDrinkImage("mango lassi")
+print(result)

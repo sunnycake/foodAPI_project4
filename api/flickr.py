@@ -1,11 +1,9 @@
 import requests
 import os
 
-
-def getImage():
-    item = input("Enter the food item you would like an image for: ")
-    key = os.environ.get('FLICKR_KEY')
-
+def getImage(drinkName):
+    
+    key = os.environ.get('FLICKR_KEY') # 4dd2de713ae2dfae3dc724620b1c8b92 
     # Docs at https://www.flickr.com/services/api/explore/flickr.photos.search
     # Search for pictures, modify to search for whatever tag you want
 
@@ -14,23 +12,22 @@ def getImage():
     params = {
         'method': 'flickr.photos.search',
         'api_key': key,
-        'text': item,
+        'text': drinkName,
         'format': 'json',
-        'nojsoncallback': '1',
-        'sort': 'food'
+        'nojsoncallback': '5',
+        'sort': 'relevance',
     }
 
-
-    # Search flickr for egg pictures
+    # Search flickr for pictures
     flickrResponse = requests.get(flickerSearchURL, params=params)
     # get json back
     flickrResponseJson = flickrResponse.json()
 
     # Get first json object ('photos') which contains another json object ('photo') which is an json array; each
-    # element represents one photo. Take element 0
+    # element represents one photo. Take element 1
 
-    firstResponsePhoto = flickrResponseJson['photos']['photo'][0]
-    print(firstResponsePhoto)  #Just checking we get the JSON we expect
+    firstResponsePhoto = flickrResponseJson['photos']['photo'][2]
+    
 
     # deal with this in the following way. 
 
@@ -42,19 +39,7 @@ def getImage():
     server = firstResponsePhoto['server']
     farm = firstResponsePhoto['farm']
 
-    # TODO add error handing
-    try:
-        fetchPhotoURL = f'https://farm{farm}.staticflickr.com/{server}/{photo_id}_{secret}_m.jpg' 
-        print(fetchPhotoURL)   # Again, just checking
-
-        photo_response = requests.get(fetchPhotoURL)
-
-        filename = f'{item}.jpeg'
-
-        with open(filename, 'wb') as f:
-            for chunk in photo_response.iter_content():
-                f.write(chunk)
-        print('Photo saved to ' + filename)
-    except:
-        print("You lost internet connection")
-getImage()
+    
+    fetchPhotoURL = f'https://farm{farm}.staticflickr.com/{server}/{photo_id}_{secret}_m.jpg' 
+    photoResponse = requests.get(fetchPhotoURL)
+    return photoResponse
