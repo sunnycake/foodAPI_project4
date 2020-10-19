@@ -1,7 +1,12 @@
+
 """functions in this file handles 
     communication between the application and the user"""
 
+def get_search_term():
+    search_recipe = input('Search for a recipe: ').strip()
+    return search_recipe
 
+  
 def message(msg):
     """ Prints a message for the user
      :param msg: the message to print"""
@@ -32,6 +37,7 @@ def get_id():
         except ValueError:
             message('Please enter a number.')
 
+            
 def save_or_not_save():
     """ Ask user to enter 'save' or 'not save'
      :returns: True if user enters 'save' or False if user enters 'not save' """
@@ -43,4 +49,4 @@ def save_or_not_save():
             return False
         else:
             message('Type \'save\' or \'not save\'')
-     
+

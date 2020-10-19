@@ -1,17 +1,13 @@
-from api import flickr, edamam, spoonacular
+from api import flickr, nutritionix, spoonacular
 import random 
 
 
-def get_food_info(search_food, search_drink):
-    
-    what_to_search_for_image = random.choice([search_food, search_drink])
-    image = flickr.get_image(what_to_search_for_image)
+def get_food_info(search_recipe):
+    search_recipe, recipe_url = spoonacular.get_recipe(search_recipe)
+    print("\nHere's a recipe we think you might enjoy.\n")
+    print(f'Recipe name: {search_recipe}')
+    print(f'Recipe URL: {recipe_url}\n')
 
-
-    drink = edamam.get_drink(search_drink)
-    recipe = spoonacular.get_recipe(search_food)
-
-    return image, drink, recipe
-
+    return search_recipe, recipe_url
 
 
