@@ -11,24 +11,15 @@ def getImage(drinkName):
         data = requests.get(url)
         jsonFlickrApi = data.json()
         results = jsonFlickrApi['photos']['photo']
-        pprint(jsonFlickrApi)
-
         for result in results:
             secret = result['secret']
             photo_id = result['id']
             server = result['server']
             title = result['title']
 
-        print(secret) # This is here for testing purposes only. Will need to be removed.
-
         fetchPhotoURL = f'https://live.staticflickr.com/{server}/{photo_id}_{secret}_m.jpg' 
         photoResponse = requests.get(fetchPhotoURL)
-        print(photoResponse) # This is here for testing purposes only. Will need to be removed.
-
-        with open('%s.jpg' %title, 'wb') as file:
-            for image in photoResponse.iter_content():
-                file.write(image)
+        return photoResponse
     except Exception as e:
         print('Error with your query. ')
     
-getImage('pepsi') # This is here for testing purposes only. Will need to be removed.
