@@ -6,6 +6,9 @@ def get_search_term():
     search_recipe = input('Search for a recipe: ').strip()
     return search_recipe
 
+def get_search_term():
+    search_drink = input('Search for a drink: ').strip()
+    return search_drink
   
 def message(msg):
     """ Prints a message for the user

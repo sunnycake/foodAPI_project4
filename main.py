@@ -1,5 +1,5 @@
 import ui
-from api import spoonacular, nutritionix, flickr
+from api import flickr, nutritionix, spoonacular
 import api_controller
 import db
 
@@ -41,6 +41,11 @@ def search_recipe():
         db.save_recipe(recipe_name, recipe_url)
     elif save == 'n':
         print('Good bye! ')
+
+def search_drink():
+    search_drink = ui.get_search_term()
+    drink_name = api_controller.get_drink_info(search_drink)
+    return drink_name
 
     
 def delete_recipe():
