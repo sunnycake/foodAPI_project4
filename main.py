@@ -17,12 +17,12 @@ def main():
             elif choice == 3:
                 display_all_recipes()
             elif choice == 4:
-                print('Good bye!')
+                ui.message('Good bye!')
                 break
             else:
-                print('\nNot a valid choice.\n')
+               ui.message('\nNot a valid choice.\n')
         except ValueError as e:
-            print('\nPlease enter a numeric choice.\n')
+            ui.message('\nPlease enter a numeric choice.\n')
 
 
 def display_menu(): # Menu option for user
@@ -38,7 +38,8 @@ def search_recipe():
     search_recipe = ui.get_non_empty_string("Please Enter recipe name? ") 
     search_drink = ui.get_non_empty_string("Please enter drink name? ")
     drink_name = api_controller.get_drink_info(search_drink)
-    img_file_name = api_controller.getDrinkImage(drink_name)
+    drink_img = flickr.getImage(search_drink)
+    img_file_name = api_controller.getDrinkImage(drink_img)
     recipe_name, recipe_url = api_controller.get_food_info(search_recipe)
     save = ui.save_or_not_save()
     if save:
