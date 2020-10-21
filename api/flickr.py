@@ -42,4 +42,4 @@ def getImage(drinkName):
     
     fetchPhotoURL = f'https://farm{farm}.staticflickr.com/{server}/{photo_id}_{secret}_m.jpg' 
     photoResponse = requests.get(fetchPhotoURL)
-    return photoResponse
+    return photoResponse()
