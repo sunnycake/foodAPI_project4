@@ -30,8 +30,8 @@ def getDrinkImage(drinkName):
     except:
         print("error")
     return filename
-result = getDrinkImage("mango lassi")
-print(result)
+
+
 
 
 
