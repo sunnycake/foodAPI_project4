@@ -9,6 +9,12 @@ def get_food_info(search_recipe):
     print(f'Recipe URL: {recipe_url}\n')
 
     return search_recipe, recipe_url
+
+def get_drink_info(search_term):
+    search_drink = nutritionix.get_drink(search_term)
+    print('This is the drink you wanna to see. ')
+    print(f'Drink Name: {search_drink}')
+    return search_drink
   
   
 def getDrinkImage(drinkName):
@@ -24,8 +30,8 @@ def getDrinkImage(drinkName):
     except:
         print("error")
     return filename
-result = getDrinkImage("mango lassi")
-print(result)
+
+
 
 
 

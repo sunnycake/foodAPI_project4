@@ -1,6 +1,6 @@
 import peewee
 import ui
-from api import spoonacular, nutritionix, flickr
+from api import flickr, nutritionix, spoonacular
 import api_controller
 import db
 
@@ -53,6 +53,7 @@ def save_record(recipe_name, recipe_url, drink_name, img_file_name):
         food_record.save()
     except peewee.IntegrityError:
         ui.message(f"Failed to add! Either the Name: {recipe_name}, or the Drink: {drink_name} already exist in the database ")
+
 
 def delete_recipe():
     get_id = ui.get_id()
