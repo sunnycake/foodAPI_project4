@@ -1,6 +1,6 @@
 import peewee
 import ui
-from api import flickr, nutritionix, spoonacular
+from api import spoonacular, nutritionix, flickr
 import api_controller
 import db
 
@@ -67,7 +67,7 @@ def delete_recipe():
 def display_all_recipes():
     ui.message("\nHere's all your recipes: \n")
     db.display_recipe()
-
+    pass
 
 if __name__ == "__main__":
     main()
