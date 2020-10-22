@@ -17,8 +17,7 @@ def get_drink_info(search_term):
     return search_drink
   
   
-def getDrinkImage(drinkName):
-    img = flickr.getImage(drinkName)
+def getDrinkImage(img, drinkName):
     # error handler
     try:
         filename = f'{drinkName}.jpeg'
