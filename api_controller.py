@@ -2,7 +2,7 @@
 from api import flickr, nutritionix, spoonacular
 import random 
 
-def get_food_info(search_recipe):
+def get_food_info(search_recipe, search_drink):
     search_recipe, recipe_url = spoonacular.get_recipe(search_recipe)
     drink = nutritionix.get_drink(search_drink)
     image = flickr.getImage(search_drink)
