@@ -8,16 +8,14 @@ db = SqliteDatabase("database/food.db")
 class Food(Model):
     id = AutoField()
 
-    food_name = CharField(unique=True)
-    url = CharField()
+    recipe_name = CharField(unique=True)
+    recipe_url = CharField()
     drink_name = CharField()
     img_file_name = CharField()
 
     class Meta():
         database = db #this model uses the "food.db" database
         constraints = [SQL('UNIQUE( food_name COLLATE NOCASE )')]
-
-   
 
 
     def __str__(self):
