@@ -1,15 +1,28 @@
-def save(recipe, drink, image):
-    pass 
-    # todo
-    # db columns could be 
-    # recipe search term, 
-    # recipe_instructions, 
-    # recipe_ingredients, 
-    # drink name, 
-    # drink_instructions, 
-    # drink_ingredients, 
-    # filename for image
+import peewee
+from model_food import Food
 
 
-def show_all_saved_info():
-    pass # todo get from db
+def check_if_recipe_exist(recipe_name):
+    """checks if recipe exists. returns the primary ID, if it exists.
+    and none value if it doesn't"""
+    result = Food.get_or_none(Food.recipe_name == recipe_name)
+    if result:
+        return result.id
+
+def create_food_record(food_name, recipe_url, drink_name,img_file_name):
+    """creates and returns a Model instance for the Food Model using the Field instances - food_name, url. """
+    food = Food.create(recipe_name=food_name, recipe_url=recipe_url, drink_name=drink_name, img_file_name=img_file_name)
+    return food
+
+    
+def display_recipe():
+    query = Food.select().dicts()
+    for row in query: 
+        print(row)
+
+def delete_recipe_by_id(primary_id):
+    """get artwork by ID and deletes it and returns number of row deleted"""
+    recipe = Food.get(Food.id == primary_id)
+    num_row_deleted = recipe.delete_instance()
+    return num_row_deleted
+
