@@ -15,7 +15,7 @@ class Food(Model):
 
     class Meta():
         database = db #this model uses the "food.db" database
-        constraints = [SQL('UNIQUE( food_name COLLATE NOCASE )')]
+        constraints = [SQL('UNIQUE( recipe_name COLLATE NOCASE )')]
 
 
     def __str__(self):

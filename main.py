@@ -35,16 +35,15 @@ def display_menu(): # Menu option for user
 def search_recipe():
     """get info about the user's choose food and drink from 3 different api.
         """
-    search_recipe = ui.get_non_empty_string("Please Enter recipe name? ") 
-    search_drink = ui.get_non_empty_string("Please enter drink name? ")
-    drink_name = api_controller.get_drink_info(search_drink)
-    drink_img = flickr.getImage(search_drink)
-    img_file_name = api_controller.getDrinkImage(drink_img, search_drink)
-    recipe_name, recipe_url = api_controller.get_food_info(search_recipe)
+    search_recipe = ui.get_non_empty_string("Please Enter recipe name: ") 
+    search_drink = ui.get_non_empty_string("Please enter drink name: ")
+    recipe_name, recipe_url, drink_name, img_file_name = api_controller.get_food_info(search_recipe, search_drink)
+
     save = ui.save_or_not_save()
     if save:
         save_record(recipe_name, recipe_url, drink_name, img_file_name)
     ui.message("Good Bye!")
+
 
 def save_record(recipe_name, recipe_url, drink_name, img_file_name):
     """saves a recipe record in to the database and handles for duplicate data entry"""
