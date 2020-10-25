@@ -11,12 +11,13 @@ def check_if_recipe_exist(recipe_name):
 
 def create_food_record(food_name, recipe_url, drink_name,img_file_name):
     """creates and returns a Model instance for the Food Model using the Field instances - food_name, url. """
-    food = Food.create(food_name=food_name, recipe_url=recipe_url, drink_name=drink_name, img_file_name=img_file_name)
+    food = Food.create(recipe_name=food_name, recipe_url=recipe_url, drink_name=drink_name, img_file_name=img_file_name)
     return food
 
     
 def display_recipe():
-    for row in Food.select():
+    query = Food.select().dicts()
+    for row in query: 
         print(row)
 
 def delete_recipe_by_id(primary_id):

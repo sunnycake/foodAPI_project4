@@ -29,7 +29,7 @@ def display_menu(): # Menu option for user
     print('1: Search recipe')
     print('2: Delete a recipe')
     print('3: Display all recipes')
-    print('5: Exit')
+    print('4: Exit')
 
 
 def search_recipe():
@@ -39,7 +39,7 @@ def search_recipe():
     search_drink = ui.get_non_empty_string("Please enter drink name? ")
     drink_name = api_controller.get_drink_info(search_drink)
     drink_img = flickr.getImage(search_drink)
-    img_file_name = api_controller.getDrinkImage(drink_img)
+    img_file_name = api_controller.getDrinkImage(drink_img, search_drink)
     recipe_name, recipe_url = api_controller.get_food_info(search_recipe)
     save = ui.save_or_not_save()
     if save:
@@ -59,7 +59,7 @@ def delete_recipe():
     get_id = ui.get_id()
     try:
         rows_deleted = db.delete_recipe_by_id(get_id)
-        ui.message(f"successfully deleted {rows_deleted} row")
+        ui.message(f"successfully deleted {rows_deleted} row\n")
     except peewee.DoesNotExist:
         ui.message("The record you are trying to delete doesn't exist")
 
@@ -67,6 +67,7 @@ def delete_recipe():
 def display_all_recipes():
     ui.message("\nHere's all your recipes: \n")
     db.display_recipe()
+    print()
 
 
 if __name__ == "__main__":
