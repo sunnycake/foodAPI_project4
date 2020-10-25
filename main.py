@@ -22,7 +22,7 @@ def main():
             else:
                ui.message('\nNot a valid choice.\n')
         except ValueError as e:
-            ui.message('\nPlease enter a numeric choice.\n', e)
+            ui.message('\nPlease enter a numeric choice.\n')
 
 
 def display_menu(): # Menu option for user
