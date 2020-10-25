@@ -19,7 +19,13 @@ def getImage(drinkName):
 
         fetchPhotoURL = f'https://live.staticflickr.com/{server}/{photo_id}_{secret}_m.jpg' 
         photoResponse = requests.get(fetchPhotoURL)
-        return photoResponse
+
+        filename = f'{title}.jpg'
+        with open(filename, 'wb') as file:
+            for image in photoResponse.iter_content():
+                file.write(image)
+            return filename
+
     except Exception as e:
         print('Error with your query. ')
     
