@@ -1,14 +1,6 @@
 
 """functions in this file handles 
     communication between the application and the user"""
-
-def get_search_term():
-    search_recipe = input('Search for a recipe: ').strip()
-    return search_recipe
-
-def get_search_term():
-    search_drink = input('Search for a drink: ').strip()
-    return search_drink
   
 def message(msg):
     """ Prints a message for the user
@@ -19,7 +11,7 @@ def get_non_empty_string(question):
     """accepts only alpha characers for an answer """
     answer = input(question)
     while True:
-        if answer.isalpha() == False:
+        if answer.isalpha() and answer.isspace == False:
             message("Please use alpha characters only!") 
             answer = input(question)
         else:
@@ -31,7 +23,7 @@ def get_id():
     :returns: the ID value """
     while True:
         try:
-            id = int(input('Enter art work ID: '))
+            id = int(input('Enter recipe ID: '))
             if id > 0:
                 return id
             else:
