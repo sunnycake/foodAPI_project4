@@ -44,7 +44,7 @@ def search_recipe():
         save_record(recipe_name, recipe_url, drink_name, img_file_name)
         ui.message('Your recipe has been saved. ')
     else:
-        ui.message('Error adding your recipe. Please try searching again. ')
+        ui.message('Try searching again. ')
 
 
 def save_record(recipe_name, recipe_url, drink_name, img_file_name):

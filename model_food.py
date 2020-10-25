@@ -21,5 +21,6 @@ class Food(Model):
     def __str__(self):
         return f'{self.id}: {self.recipe_name}: {self.recipe_url}: {self.drink_name}: {self.img_file_name}'
 
+
 db.connect()
 db.create_tables([Food])
