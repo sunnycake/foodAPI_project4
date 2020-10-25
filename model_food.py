@@ -7,14 +7,18 @@ db = SqliteDatabase("database/food.db")
     """
 class Food(Model):
     id = AutoField()
-    recipe_name = CharField(unique=True)
-    recipe_url = CharField()
-    drink_name = CharField(unique=True)
-    img_file_name = CharField(unique=True)
+
+    food_name = CharField(unique=True)
+    url = CharField()
+    drink_name = CharField()
+    img_file_name = CharField()
 
     class Meta():
         database = db #this model uses the "food.db" database
-        constraints = [SQL('UNIQUE( recipe_name COLLATE NOCASE, drink_name COLLATE NOCASE )')]
+        constraints = [SQL('UNIQUE( food_name COLLATE NOCASE )')]
+
+   
+
 
     def __str__(self):
         return f'{self.id}: {self.recipe_name}: {self.recipe_url}: {self.drink_name}: {self.img_file_name}'
