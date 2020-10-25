@@ -42,7 +42,9 @@ def search_recipe():
     save = ui.save_or_not_save()
     if save:
         save_record(recipe_name, recipe_url, drink_name, img_file_name)
-    ui.message("Good Bye!")
+        ui.message('Your recipe has been saved. ')
+    else:
+        ui.message('Error adding your recipe. Please try searching again. ')
 
 
 def save_record(recipe_name, recipe_url, drink_name, img_file_name):
@@ -51,16 +53,16 @@ def save_record(recipe_name, recipe_url, drink_name, img_file_name):
         food_record = db.create_food_record(recipe_name, recipe_url, drink_name, img_file_name)
         food_record.save()
     except peewee.IntegrityError:
-        ui.message(f"Failed to add! Either the Name: {recipe_name}, or the Drink: {drink_name} already exist in the database ")
+        ui.message(f"Failed to add! Recipe Name: {recipe_name} already exist in the database ")
 
 
 def delete_recipe():
     get_id = ui.get_id()
     try:
         rows_deleted = db.delete_recipe_by_id(get_id)
-        ui.message(f"successfully deleted {rows_deleted} row\n")
+        ui.message(f"Successfully deleted {rows_deleted} row\n")
     except peewee.DoesNotExist:
-        ui.message("The record you are trying to delete doesn't exist")
+        ui.message("The record you are trying to delete doesn't exist. ")
 
 
 def display_all_recipes():
