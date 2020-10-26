@@ -6,7 +6,7 @@ key = os.environ.get('FLICKR_KEY') # 4dd2de713ae2dfae3dc724620b1c8b92
 
 def getImage(drinkName):
 
-    url = f'https://www.flickr.com/services/rest/?method=flickr.photos.search&text={drinkName}&media=photos&per_page=1&sort=relevance&format=json&nojsoncallback=1n&api_key={key}'
+    url = f'https://www.flickr.com/services/rest/?method=flickr.photos.search&text={drinkName}&media=photos&per_page=1&sort=relevance&format=json&nojsoncallback=1&api_key={key}'
     try:
         data = requests.get(url)
         jsonFlickrApi = data.json()
