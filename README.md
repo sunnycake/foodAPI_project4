@@ -1,6 +1,6 @@
 FOOD RECIPE
 
-The Food Recipe app, is an application for food lovers to search for recepies. This application is developed to extract and display information about a food recipe, and drink along with a picture by asking users to enter drink and food recipe name. After the program dis[lay the data, then the user will have the option to either save or not save the output into the database. An output example would be (Food Name: , Food Recipe Link: , Drink Name: , Drink Picture:  )
+The Food Recipe app is for food lovers to search for recipes. This application is developed to extract and display information about a food recipe, drink, along with a picture by asking of the drink. The program displays the data, then the user will have the option to either save or not save the output into the database. An output example would be (Food Name: Chicken 65 , Food Recipe Link: https://spoonacular.com/recipes/chicken-65-637876 , Drink Name: pepsi, Drink Picture: pepsi.jpg)
 
 
 Requirements: Python, Peewee, Spoonacular, Nutritionix, Flickr, ID's and KEY's
