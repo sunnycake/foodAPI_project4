@@ -22,6 +22,7 @@ def get_recipe(search_recipe):
             print('Sorry, could not get a recipe.')
     except Exception as e:
         logging.exception(f'Error occured while calling the API. {e}')
+        return None
 
 
 def spoonacular_api_call(query):
