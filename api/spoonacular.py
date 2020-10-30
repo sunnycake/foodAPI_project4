@@ -1,6 +1,7 @@
 import requests
 import os
 from pprint import pprint
+import logging
 
 key = os.environ.get('SPOONACULAR_KEY')
 
@@ -22,8 +23,11 @@ def get_recipe(search_recipe):
             print('No results for recipe search. ')
             return None
 
+    except requests.exceptions.RequestException as e:
+        raise SystemExit(e)
     except Exception as e:
-        print('Error with your query. ')
+        logging.error(f'Error occured calling recipe API: {e}')
+        return None, e
 
 
 def spoonacular_api_call(query):
