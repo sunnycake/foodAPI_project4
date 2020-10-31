@@ -1,6 +1,7 @@
 import requests 
 import os
 from pprint import pprint
+from caching import nutritionix_cache
 
 app_key = os.environ.get('DRINK_KEY')
 app_id = os.environ.get('DRINK_ID')

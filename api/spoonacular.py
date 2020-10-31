@@ -1,6 +1,7 @@
 import requests
 import os
 from pprint import pprint
+from caching import spoonacular_cache
 
 # KEY d688a6a66b854751b47ff02fa3e115d1 for testing purposes. 
 
