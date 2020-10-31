@@ -1,6 +1,7 @@
 import requests
 import os
 from pprint import pprint
+from caching import flickr_cache
 import logging
 
 key = os.environ.get('FLICKR_KEY') 
