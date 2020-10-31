@@ -1,8 +1,7 @@
 import requests
 import os
 from pprint import pprint
-
-# KEY d688a6a66b854751b47ff02fa3e115d1 for testing purposes. 
+import logging
 
 key = os.environ.get('SPOONACULAR_KEY')
 
@@ -11,15 +10,24 @@ url = 'https://api.spoonacular.com/recipes/complexSearch'
 def get_recipe(search_recipe):
     try:
         query = {'query': search_recipe, 'addRecipeInformation': 'true','number': '1', 'apiKey': key}
-        data = requests.get(url, params=query).json()
+        data = spoonacular_api_call(query)
         results = data['results']
 
-        for result in results:
-            title = result['title']
+        if results:
+            result = results[0]
+            recipe_name = result['title']
             recipe_url = result['spoonacularSourceUrl']
+            recipe = recipe_name, recipe_url
+            return recipe
+        else:
+            print('No results for recipe search. ')
 
-        return title, recipe_url
-
-
+    except requests.exceptions.RequestException as e:
+        raise SystemExit(e)
     except Exception as e:
-        print('Error with your query. ')
+        logging.error(f'Error occured calling recipe API: {e}')
+        return None, e
+
+
+def spoonacular_api_call(query):
+    return requests.get(url, params=query).json()
