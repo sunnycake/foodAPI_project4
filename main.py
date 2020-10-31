@@ -37,8 +37,9 @@ def search_recipe():
         """
     search_recipe = ui.get_non_empty_string("Please Enter recipe name: ") 
     search_drink = ui.get_non_empty_string("Please enter drink name: ")
-    recipe_name, recipe_url, drink_name, img_file_name = api_controller.get_food_info(search_recipe, search_drink)
-
+    recipe_result = api_controller.get_food_info(search_recipe, search_drink)
+    recipe_name, recipe_url, drink_name, img_file_name = recipe_result
+    
     save = ui.save_or_not_save()
     if save:
         save_record(recipe_name, recipe_url, drink_name, img_file_name)
