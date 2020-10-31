@@ -67,8 +67,8 @@ def delete_recipe():
 
 def display_all_recipes():
     ui.message("\nHere's all your recipes: \n")
-    db.display_recipe()
-    print()
+    recipes = db.display_recipe()
+    ui.show_all(recipes)
 
 
 if __name__ == "__main__":
