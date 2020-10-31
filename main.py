@@ -66,10 +66,12 @@ def delete_recipe():
 
 
 def display_all_recipes():
-    ui.message("\nHere's all your recipes: \n")
-    db.display_recipe()
-    print()
-
+    recipes = db.display_recipe()
+    if recipes:
+        ui.message("\nHere's all your recipes: \n")
+        ui.show_all(recipes)
+    else:
+        ui.message('\nYou have no recipes to display. \n')
 
 if __name__ == "__main__":
     main()
