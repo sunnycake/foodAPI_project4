@@ -45,3 +45,7 @@ def save_or_not_save():
         else:
             message('Type \'save\' or \'not save\'')
 
+
+def show_all(recipes):
+    for recipe in recipes:
+        print(f'{recipe}\n')
