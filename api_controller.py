@@ -20,9 +20,9 @@ def get_food_info(search_recipe, search_drink):
     try:
         search_food = spoonacular.get_recipe(search_recipe)
         drink = nutritionix.get_drink(search_drink)
-        
+        img = handle_flickr_api_response(drink)
         recipe_name, recipe_url = search_food
-        recipe = recipe_name, recipe_url, drink
+        recipe = recipe_name, recipe_url, drink, img
 
         if recipe:
             print(f"\nHere's a recipe: {recipe}\n")
