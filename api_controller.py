@@ -16,9 +16,6 @@ def handle_flickr_api_response(drink_name):
     else:
         print("Sorry, couldn't find what you looking for. Please Try a different search ")
 
-res = handle_flickr_api_response('$$$$$$$')
-print(res)
-
 def get_food_info(search_recipe, search_drink):
     recipe_name, recipe_url = spoonacular.get_recipe(search_recipe)
     drink = nutritionix.get_drink(search_drink)

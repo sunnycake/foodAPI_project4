@@ -24,8 +24,10 @@ def get_image_data(drinkName):
         data = resonse.json()
         results = data['photos']['photo']
         return results, None
-    except Exception as error:
-        return None, error
+    except Exception as err:
+        return err
+    
+ 
 
 def extract_image_url_params(data):
     """get the query params from the data returned (get_image_data) function"""
@@ -57,5 +59,5 @@ def create_img_file(title, image):
         return err
 
 
-def catch():
-    pass
+res = get_image_data('pepsi')
+print(res)
