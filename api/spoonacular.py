@@ -1,7 +1,7 @@
 import requests
 import os
 from pprint import pprint
-from caching import spoonacular_cache
+#from caching import spoonacular_cache
 import logging
 
 key = os.environ.get('SPOONACULAR_KEY')

@@ -1,7 +1,7 @@
 import requests 
 import os
 from pprint import pprint
-from caching import nutritionix_cache
+#from caching import nutritionix_cache
 import logging
 
 app_key = os.environ.get('DRINK_KEY')

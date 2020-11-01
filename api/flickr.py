@@ -3,7 +3,7 @@ import os
 import json
 from pprint import pprint
 from http import HTTPStatus
-from caching import flickr_cache
+#from caching import flickr_cache
 import logging
 
 
@@ -69,7 +69,7 @@ def retrieve_image(server, photo_id, secret):
 
 def create_img_file(title, image):
     try:
-        save_path = '../images'
+        save_path = './images'
         filename = f'{title}.jpg'
         complete_file_name = os.path.join(save_path, filename)
         with open(complete_file_name, 'wb') as file:
