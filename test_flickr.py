@@ -1,4 +1,4 @@
-import flickr
+from api import flickr
 from unittest import TestCase
 from unittest.mock import patch
 
@@ -9,6 +9,3 @@ class TestAPI(TestCase):
         result = flickr.get_image_data('$$$$$$$$$$')
         # assert that the get-image_data method correctly returns a response that indicates no value 
         self.assertEqual([], result)
-
-
-    
