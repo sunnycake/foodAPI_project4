@@ -3,6 +3,9 @@ import os
 import json
 from pprint import pprint
 from http import HTTPStatus
+from caching import flickr_cache
+import logging
+
 
 key = os.environ.get('FLICKR_KEY') 
 url = 'https://www.flickr.com/services/rest'
@@ -20,7 +23,7 @@ def get_image_data(drinkName):
     'per_page' : 1,
     'sort' : 'relevance',
     'format': 'json',
-    'nojsoncallback' : '1n',
+    'nojsoncallback' : '1',
     'api_key' : key
     }
 
