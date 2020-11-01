@@ -7,7 +7,7 @@ from pprint import pprint
 def handle_flickr_api_response(drink_name):
     image_data, error = flickr.get_image_data(drink_name)
     if error:
-        print("Sorry! Unable to connect")
+        print(error)
     elif image_data:
         server, photo_id, secret, title = flickr.extract_image_url_params(image_data)
         img = flickr.retrieve_image(server, photo_id, secret)

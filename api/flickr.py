@@ -1,11 +1,16 @@
 import requests
 import os
+import json
 from pprint import pprint
 from http import HTTPStatus
 
 key = os.environ.get('FLICKR_KEY') 
-url = 'https://www.flickr.com/services/rest/'
+url = 'https://www.flickr.com/services/rest'
 
+errors = {
+    "msg": str
+}
+    
 def get_image_data(drinkName):
     """Set up the parameters required in the search"""
     param = {
@@ -17,17 +22,28 @@ def get_image_data(drinkName):
     'format': 'json',
     'nojsoncallback' : '1n',
     'api_key' : key
-   }
-    """return a value if connection is successfull or error if not"""
+    }
+
     try: 
         resonse = requests.get(url, params=param)
         data = resonse.json()
         results = data['photos']['photo']
         return results, None
-    except Exception as err:
-        return err
-    
- 
+    except requests.exceptions.ConnectionError:
+        errors['msg'] = 'OOPS! Connection Error'
+        return None, errors
+    except requests.exceptions.HTTPError:
+        errors['msg'] = 'Sorry! Page Not Found. Please Check the URL'
+        return None, errors
+    except KeyError:
+        errors['msg'] = 'OOPS! Key ERROR. Please Check Query Params'
+        return None, errors
+    except json.JSONDecodeError:
+        errors['msg'] = 'OOPS! Please check the url path'
+        return None, errors
+    except requests.RequestException:
+        errors['msg'] = 'All we know is an error happened!'
+        return None, errors
 
 def extract_image_url_params(data):
     """get the query params from the data returned (get_image_data) function"""
@@ -50,8 +66,10 @@ def retrieve_image(server, photo_id, secret):
 
 def create_img_file(title, image):
     try:
+        save_path = '../images'
         filename = f'{title}.jpg'
-        with open(filename, 'wb') as file:
+        complete_file_name = os.path.join(save_path, filename)
+        with open(complete_file_name, 'wb') as file:
             for image in image.iter_content():
                 file.write(image)
             return filename
@@ -59,5 +77,4 @@ def create_img_file(title, image):
         return err
 
 
-res = get_image_data('pepsi')
-print(res)
+
