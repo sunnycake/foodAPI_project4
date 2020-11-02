@@ -13,7 +13,8 @@ url = 'https://www.flickr.com/services/rest'
 errors = {
     "msg": str
 }
-    
+
+  
 def get_image_data(drinkName):
     """Set up the parameters required in the search"""
     param = {
